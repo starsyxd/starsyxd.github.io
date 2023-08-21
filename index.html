@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Darian</title>
+        <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/a/AAcHTtfpJynPm0nhY7Z2zj2xJMZQ8N0f0aTAyqL5GM1lOVBK0koIW_wRZYp5mFHYXBOtCwpROpH3lCcIX98rnbLOtDB0n0dBV8-b5uqoFqKZG20=s288-c-no">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+              
+        <script src="https://kit.fontawesome.com/fcb5095760.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/assets/index.css">
+    </head>
+    <body>
+        <html oncontextmenu="return false"> 
+    </html> 
+        <div class="goaway">
+              <canvas id="canvas"></canvas>
+        <br>   
+        <h1>Darian</h1>
+            <br>
+    
+            <p>
+                <i class="devicon-lua-plain"></i> LUA 
+                <i class="devicon-javascript-plain"></i>  JavaScript
+              <i class="devicon-python-plain"></i> Python
+            </p>
+    
+            <br>
+            <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+            <br>
+    <ul>
+            <a href="https://dariandev.com/discord"><i class="fa-brands fa-discord"></i></a> <a
+    href="https://github.com/justDarian"><i class="fa-brands fa-github"></i></a> <a href="/cdn-cgi/l/email-protection#0d7b616c774d7b616c77237f687e79327e786f67686e792d302d4b6868696f6c6e662b6f6269742d302d40687e7e6c6a68">
+     <a href="https://www.youtube.com/@justdarian"><i class="fa-brands fa-youtube"></i></a>
+    
+    </ul>
+      <br>
+            <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+            <br>
+            <img src="https://discord.c99.nl/widget/theme-2/1055188030442459195.png">
+    <br>
+        <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+        <br>
+    <p>im retarded</p>
+    
+    
+    
+        <br>
+        <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+        <br>
+       </br>
+       </div>
+       
+      <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    </body>
+    </html>
+
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+    }
+    
+    a {
+        color: white;
+        text-transform: none;
+    transition: 0.3s;
+    }
+    
+    a:hover {
+        color: grey;
+    }
+    
+    #logo {
+        width: 200px;
+        border-radius: 50rem;
+    }
+    
+    .goaway {
+        display: flex;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    canvas {
+      position: fixed;
+      z-index: -1;
+    }
+    </style>
+
+    <script>var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    var stars = [], // Array that contains the stars
+        FPS = 60, // Frames per second
+        x = 100, // Number of stars
+        mouse = {
+          x: 0,
+          y: 0
+        };  // mouse location
+    
+    // Push stars to array
+    
+    for (var i = 0; i < x; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1 + 1,
+        vx: Math.floor(Math.random() * 50) - 25,
+        vy: Math.floor(Math.random() * 50) - 25
+      });
+    }
+    
+    // Draw the scene
+    
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      
+      ctx.globalCompositeOperation = "lighter";
+      
+      for (var i = 0, x = stars.length; i < x; i++) {
+        var s = stars[i];
+      
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = 'black';
+        ctx.stroke();
+      }
+      
+      ctx.beginPath();
+      for (var i = 0, x = stars.length; i < x; i++) {
+        var starI = stars[i];
+        ctx.moveTo(starI.x,starI.y); 
+        if(distance(mouse, starI) < 150) ctx.lineTo(mouse.x, mouse.y);
+        for (var j = 0, x = stars.length; j < x; j++) {
+          var starII = stars[j];
+          if(distance(starI, starII) < 150) {
+            //ctx.globalAlpha = (1 / 150 * distance(starI, starII).toFixed(1));
+            ctx.lineTo(starII.x,starII.y); 
+          }
+        }
+      }
+      ctx.lineWidth = 0.05;
+      ctx.strokeStyle = 'white';
+      ctx.stroke();
+    }
+    
+    function distance( point1, point2 ){
+      var xs = 0;
+      var ys = 0;
+     
+      xs = point2.x - point1.x;
+      xs = xs * xs;
+     
+      ys = point2.y - point1.y;
+      ys = ys * ys;
+     
+      return Math.sqrt( xs + ys );
+    }
+    
+    // Update star locations
+    
+    function update() {
+      for (var i = 0, x = stars.length; i < x; i++) {
+        var s = stars[i];
+      
+        s.x += s.vx / FPS;
+        s.y += s.vy / FPS;
+        
+        if (s.x < 0 || s.x > canvas.width) s.vx = -s.vx;
+        if (s.y < 0 || s.y > canvas.height) s.vy = -s.vy;
+      }
+    }
+    
+    canvas.addEventListener('mousemove', function(e){
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    
+    // Update and draw
+    
+    function tick() {
+      draw();
+      update();
+      requestAnimationFrame(tick);
+    }
+    
+    tick();</script>
